@@ -5,13 +5,13 @@ import {
 } from 'react-router-dom';
 
 import Registration from '../components/auth/Registration'
-
+import Faker from '../components/auth/Faker'
 const LoginScreen = props => {
 
     return(
         <div>
             <br></br>
-            <Registration></Registration>
+            <Faker></Faker>
         </div>
     );
 };

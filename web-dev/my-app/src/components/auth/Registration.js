@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form'
+import {Button, Form} from 'react-bootstrap';
 
 export default class Registration extends Component {
     constructor(props){
@@ -43,13 +42,13 @@ export default class Registration extends Component {
             </Form.Group>
            
             <Button variant="primary" type="submit">
-                Submit
+                Submit 
             </Button>
             </Form>
 
 
 
-                <form  onSubmit = {this.handleSubmit}>
+                {/* <form  onSubmit = {this.handleSubmit}>
                    
 
                     <input type = "email" 
@@ -75,7 +74,7 @@ export default class Registration extends Component {
                 
 
                     
-                </form>
+                </form> */}
             </div>
         )
     }
