@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Form } from 'react-bootstrap';
+import {Button, Form, Toast } from 'react-bootstrap';
 import Amplify, { Auth } from 'aws-amplify';
 
 Amplify.configure({
@@ -44,8 +44,15 @@ export default function Login (props)  {
             },
             validationData: []  //optional
             })
-            .then(data => console.log(data))
-            .catch(err => console.log(err));
+            .then(
+                data => alert("Success")
+               
+                )
+            .catch(err => {
+                console.log(err);
+                //TODO: Alert User of the issue
+                alert("", err);
+            });
     
     }
 
@@ -59,7 +66,7 @@ export default function Login (props)  {
      
     return (
 
-        <div className="login-form">
+        <div className="login-form" >
 
         <Form onSubmit = {handleSubmit}>
             <Form.Group controlId = "formBasicEmail">

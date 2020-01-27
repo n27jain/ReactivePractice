@@ -2,7 +2,6 @@ import React, { useState , text} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Form, Toast } from 'react-bootstrap';
 import Amplify, { Auth } from 'aws-amplify';
-import {SignUp} from './AwsReg'
 
 Amplify.configure({
     Auth: {
@@ -28,16 +27,18 @@ Amplify.configure({
 });
 
     
-export default function Register (props)  {
+        
+
+export default function SignIn (props)  {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    
     function handleSubmit(event){
         console.log("Submitted");
         event.preventDefault();
         console.log(email,password);
-        SignUp(email,password);
+        signup(email,password)
     }
     
      
@@ -65,8 +66,10 @@ export default function Register (props)  {
             </Form.Group>
         
             <Button type="submit" >
-                Sign In or Sign Up
+                Submit 
             </Button>
+            <div></div>
+            <Button>Or SignUp</Button>
         </Form >
             
         </div>
