@@ -5,13 +5,15 @@ import {
 } from 'react-router-dom';
 
 import Registration from '../components/auth/Registration'
-import Faker from '../components/auth/Faker'
+import { SignIn } from '../components/auth/AwsReg';
+
 const LoginScreen = props => {
 
     return(
         <div>
-            <br></br>
-            <Faker></Faker>
+            {/* <br></br>
+            <SignIn></SignIn> */}
+            <Registration></Registration>
         </div>
     );
 };
