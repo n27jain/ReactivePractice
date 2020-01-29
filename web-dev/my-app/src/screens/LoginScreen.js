@@ -1,8 +1,5 @@
 import React from 'react';
-
-import {
-    Link
-} from 'react-router-dom';
+import './LoginScreen.css'
 
 import Registration from '../components/auth/Registration'
 import { SignIn } from '../components/auth/AwsReg';
@@ -10,7 +7,7 @@ import { SignIn } from '../components/auth/AwsReg';
 const LoginScreen = props => {
 
     return(
-        <div>
+        <div className ="login-screen">
             {/* <br></br>
             <SignIn></SignIn> */}
             <Registration></Registration>

@@ -9,6 +9,10 @@ import HomeScreen from './screens/HomeScreen'
 import LocationsScreen from './screens/LocationsScreen'
 import QAScreen from './screens/QAScreen'
 import LoginScreen from './screens/LoginScreen'
+import ScheduleScreen from './screens/ScheduleScreen'
+import ChatScreen from './screens/ChatScreen'
+import SignoutScreen from './screens/SignoutScreen'
+
 
 import {
   BrowserRouter as Router,
@@ -20,6 +24,7 @@ class App extends Component {
 
   state = {
     sideDrawerOpen : false,
+    signedIn : false,
   };
 
   drawerToggleHandler = () => {
@@ -28,6 +33,11 @@ class App extends Component {
     } );
   };
   
+  signedInToggleHandler = () => {
+    this.setState( (prev) => {
+      return {signedIn: !prev.signedIn};
+    });
+  };
 
   
 
@@ -35,32 +45,49 @@ class App extends Component {
 
 render(){
   let backdrop;
+  let loggedInScreen;
   if(this.state.sideDrawerOpen){
     backdrop = <BackDrop onClick = {this.drawerToggleHandler}/>
   }
+  if(this.state.signedIn){
+    loggedInScreen = 
+    <Router>
+    <div style = {{ height: '100%'}}>
+      <Toolbar DrawerHandler = {this.drawerToggleHandler}/>
+      <SideDrawer show = {this.state.sideDrawerOpen} DrawerHandler = {this.drawerToggleHandler} IsLoggedIn = {true}/>
+      {backdrop}
+        <div className = "page-container">
+          <main style = { {marginTop: '64px'} }>
+            <Route path = '/SignOut' component = {SignoutScreen}/>
+            <Route path = '/Schedule' component ={ScheduleScreen}/> 
+            <Route path = '/Chat' component ={ChatScreen}/> 
+          </main>
+        </div>
+    </div>
+    </Router>
+  }
+  else{
+    loggedInScreen = 
+    <Router>
+    <div style = {{ height: '100%'}}>
+      <Toolbar DrawerHandler = {this.drawerToggleHandler}/>
+      <SideDrawer show = {this.state.sideDrawerOpen} DrawerHandler = {this.drawerToggleHandler} IsLoggedIn = {false}/>
+      {backdrop}
+        <div className = "page-container">
+          <main style = { {marginTop: '64px'} }>
+            <Route path = '/Login' component = {LoginScreen}/>
+            <Route path = '/Home' component ={HomeScreen}/> 
+            <Route path = '/Locations' component ={LocationsScreen}/> 
+            <Route path = '/QA' component ={QAScreen}/> 
+          </main>
+        </div>
+    </div>
+    </Router>
+  }
 
     return (
-
-      <Router>
-      <div style = {{ height: '100%'}}>
-        <Toolbar DrawerHandler = {this.drawerToggleHandler}/>
-        <SideDrawer show = {this.state.sideDrawerOpen} DrawerHandler = {this.drawerToggleHandler}/>
-        {backdrop}
+      {loggedInScreen}
       
-       
-          <div className = "page-container">
-
-            <main style = { {marginTop: '64px'} }>
-
-              <Route path = '/Login' component = {LoginScreen}/>
-              <Route path = '/Home' component ={HomeScreen}/> 
-              <Route path = '/Locations' component ={LocationsScreen}/> 
-              <Route path = '/QA' component ={QAScreen}/> 
-
-            </main>
-          </div>
-      </div>
-      </Router>
     );
   }
 }
