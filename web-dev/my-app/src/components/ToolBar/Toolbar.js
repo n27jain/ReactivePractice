@@ -6,8 +6,47 @@ import {
     Link
 } from 'react-router-dom';
 
-const toolbar = props => (
-    <header className = "toolbar">
+
+
+
+
+const toolbar = props => {
+
+    let items;
+
+    if(!props.StateSigned){
+        items = (
+            <React.Fragment>
+            <li>
+            <Link to = "/Login" > Login </Link>
+            </li>
+            <li>
+            <Link to = "/Locations" > Locations </Link>
+            </li>
+            <li>
+            <Link to = "/QA" > {'Q&A'} </Link>
+            </li>
+                </React.Fragment>
+            );
+    }
+    else{
+        items = (
+            <React.Fragment>
+            <li>
+                <Link to = "/SignOut" onClick = {props.DrawerHandler}> SignOut </Link>
+            </li>
+            <li>
+                <Link to = "/Schedule" onClick = {props.DrawerHandler}> Schedule </Link>
+            </li>
+            <li>
+                <Link to = "/Chat" onClick = {props.DrawerHandler}> Chat </Link>
+            </li>
+                </React.Fragment>
+            );
+    }
+
+    return(
+        <header className = "toolbar">
         <nav className= "toolbar_navigation">
             <div className = "toolbar_toggle-button">
                 <DrawerToggleButton DrawerHandler = {props.DrawerHandler}/>
@@ -16,18 +55,12 @@ const toolbar = props => (
             <div className = "spacer"/>
             <div className ="toolbar_navigation_items">
                 <ul >
-                    <li>
-                        <Link to = "/Login" > Login </Link>
-                    </li>
-                    <li>
-                        <Link to = "/Locations" > Locations </Link>
-                    </li>
-                    <li>
-                        <Link to = "/QA" > {'Q&A'} </Link>
-                    </li>
+                   {items}
                 </ul>
             </div>
         </nav>
     </header>
-);
+    )
+
+};
 export default toolbar;

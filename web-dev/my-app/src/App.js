@@ -10,6 +10,10 @@ import LocationsScreen from './screens/LocationsScreen'
 import QAScreen from './screens/QAScreen'
 import LoginScreen from './screens/LoginScreen'
 
+import ScheduleScreen from './screens/ScheduleScreen'
+import ChatScreen from './screens/ChatScreen'
+import SignoutScreen from './screens/SignoutScreen'
+
 import {
   BrowserRouter as Router,
   Route,
@@ -20,6 +24,7 @@ class App extends Component {
 
   state = {
     sideDrawerOpen : false,
+    signedIn : false,
   };
 
   drawerToggleHandler = () => {
@@ -27,13 +32,15 @@ class App extends Component {
       return {sideDrawerOpen:!prev.sideDrawerOpen};
     } );
   };
-  
 
-  
-
-
+  signedInToggleHandler = () => {
+    this.setState( (prev) => {
+      return {signedIn: !prev.signedIn};
+    });
+  };
 
 render(){
+
   let backdrop;
   if(this.state.sideDrawerOpen){
     backdrop = <BackDrop onClick = {this.drawerToggleHandler}/>
@@ -43,20 +50,19 @@ render(){
 
       <Router>
       <div style = {{ height: '100%'}}>
-        <Toolbar DrawerHandler = {this.drawerToggleHandler}/>
-        <SideDrawer show = {this.state.sideDrawerOpen} DrawerHandler = {this.drawerToggleHandler}/>
+        <Toolbar DrawerHandler = {this.drawerToggleHandler} StateSigned = {this.state.signedIn}/>
+        <SideDrawer show = {this.state.sideDrawerOpen} DrawerHandler = {this.drawerToggleHandler} StateSigned = {this.state.signedIn}  />
         {backdrop}
       
-       
           <div className = "page-container">
-
             <main style = { {marginTop: '64px'} }>
-
               <Route path = '/Login' component = {LoginScreen}/>
               <Route path = '/Home' component ={HomeScreen}/> 
               <Route path = '/Locations' component ={LocationsScreen}/> 
               <Route path = '/QA' component ={QAScreen}/> 
-
+              <Route path = '/SignOut' component ={SignoutScreen}/> 
+              <Route path = '/Schedule' component ={ScheduleScreen}/> 
+              <Route path = '/Chat' component ={ChatScreen}/> 
             </main>
           </div>
       </div>
