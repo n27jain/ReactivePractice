@@ -33,11 +33,12 @@ export async function SignIn(username, password) {
             }).then(user => console.log(user))
         .catch(err => console.log(err));
         // The user directly signs in
-        console.log(user);
-        
+        //console.log(user);
+        return user;
     } catch (err) {
         alert("Failed")
     }
+    return null;
 }
 export async function SignUp(email, password){
     console.log("Here",email,password);

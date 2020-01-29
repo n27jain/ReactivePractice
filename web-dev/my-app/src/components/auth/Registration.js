@@ -4,6 +4,7 @@ import {Button, Form, Toast } from 'react-bootstrap';
 import {SignIn, SignUp} from './AwsReg'
 
 
+import './Registration.css'
 
 export default function Register (props)  {
     
@@ -14,15 +15,16 @@ export default function Register (props)  {
         console.log("Submitted");
         event.preventDefault();
         console.log(email,password);
-        SignIn(email,password);
+        const user = SignUp(email,password);
+        
     }
     
      
     return (
 
         <div className="login-form" >
-        <text>SignUp</text>
-        <Form onSubmit = {handleSubmit}>
+        <text className = "login-text">Sign Up</text>
+        <Form className = "form-style" onSubmit = {handleSubmit}>
             <Form.Group controlId = "formBasicEmail">
                 <Form.Control 
                     type="email"

@@ -50,19 +50,21 @@ render(){
 
       <Router>
       <div style = {{ height: '100%'}}>
-        <Toolbar DrawerHandler = {this.drawerToggleHandler} StateSigned = {this.state.signedIn}/>
-        <SideDrawer show = {this.state.sideDrawerOpen} DrawerHandler = {this.drawerToggleHandler} StateSigned = {this.state.signedIn}  />
+        <Toolbar DrawerHandler = {this.drawerToggleHandler} StateSigned = {this.state.signedIn} SignedInHandler = {this.signedInToggleHandler}/>
+        <SideDrawer show = {this.state.sideDrawerOpen} DrawerHandler = {this.drawerToggleHandler} StateSigned = {this.state.signedIn}  SignedInHandler = {this.signedInToggleHandler} />
         {backdrop}
       
           <div className = "page-container">
             <main style = { {marginTop: '64px'} }>
-              <Route path = '/Login' component = {LoginScreen}/>
-              <Route path = '/Home' component ={HomeScreen}/> 
-              <Route path = '/Locations' component ={LocationsScreen}/> 
-              <Route path = '/QA' component ={QAScreen}/> 
-              <Route path = '/SignOut' component ={SignoutScreen}/> 
-              <Route path = '/Schedule' component ={ScheduleScreen}/> 
-              <Route path = '/Chat' component ={ChatScreen}/> 
+              <Route path = '/Login' component = {LoginScreen} 
+                render = { (props) => (<LoginScreen SignedInToggleHandler = {this.signedInToggleHandler}/>)}/>
+   
+              <Route path = '/Home' component ={HomeScreen} SignedInHandler = {this.signedInToggleHandler}/> 
+              <Route path = '/Locations' component ={LocationsScreen} SignedInHandler = {this.signedInToggleHandler}/> 
+              <Route path = '/QA' component ={QAScreen} SignedInHandler = {this.signedInToggleHandler}/> 
+              <Route path = '/SignOut' component ={SignoutScreen} SignedInHandler = {this.signedInToggleHandler}/> 
+              <Route path = '/Schedule' component ={ScheduleScreen} SignedInHandler = {this.signedInToggleHandler}/> 
+              <Route path = '/Chat' component ={ChatScreen} SignedInHandler = {this.signedInToggleHandler}/> 
             </main>
           </div>
       </div>

@@ -6,7 +6,7 @@ import {
     Link
 } from 'react-router-dom';
 
-
+import logo from '../../img/medicine.png'
 
 
 
@@ -51,7 +51,9 @@ const toolbar = props => {
             <div className = "toolbar_toggle-button">
                 <DrawerToggleButton DrawerHandler = {props.DrawerHandler}/>
             </div>
-            <div className = "toolbar_logo"> <a href="/"> THE LOGO</a></div>
+            <div className = "toolbar_logo"> 
+                <img src = {logo}/>
+            </div>
             <div className = "spacer"/>
             <div className ="toolbar_navigation_items">
                 <ul >
@@ -61,6 +63,5 @@ const toolbar = props => {
         </nav>
     </header>
     )
-
 };
 export default toolbar;

@@ -1,27 +1,30 @@
 import React, { useState , text} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Form, Toast } from 'react-bootstrap';
-import {SignIn, SignUp} './AwsReg'
+import {SignIn, SignUp} from './AwsReg'
 
 
-export default function SignIn (props)  {
+import './Registration.css'
+export default function Register (props)  {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
+
     function handleSubmit(event){
         console.log("Submitted");
         event.preventDefault();
         console.log(email,password);
-        SignIn(email,password)
+        const user = SignIn(email,password);
+        console.log(user);
+        props.SignedInToggleHandler();
     }
     
      
     return (
 
         <div className="login-form" >
-        <text>SignIn</text>
-        <Form onSubmit = {handleSubmit}>
+        <text className = "login-text">Sign In</text>
+        <Form className = "form-style" onSubmit = {handleSubmit}>
             <Form.Group controlId = "formBasicEmail">
                 <Form.Control 
                     type="email"
@@ -41,10 +44,8 @@ export default function SignIn (props)  {
             </Form.Group>
         
             <Button type="submit" >
-                Submit 
+                Sign In or Sign Up
             </Button>
-            <div></div>
-            <Button>Or SignUp</Button>
         </Form >
             
         </div>

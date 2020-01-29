@@ -2,7 +2,7 @@
     position: fixed;
     width: 100%;
     background-color: darkcyan;
-    height: 56px;
+    height: 64px;
     top: 0;
     left: 0;
 }
@@ -44,6 +44,7 @@
     text-decoration: none;
     font-size : 1.5rem;
     margin-left: 1rem;
+    align-content: center;
 }
 @media (max-width: 768px) {
     .toolbar_navigation_items{

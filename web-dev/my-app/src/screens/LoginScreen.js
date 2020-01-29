@@ -1,19 +1,53 @@
-import React from 'react';
+import React , { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import SignIn  from '../components/auth/SignIn';
+import Registration from '../components/auth/Registration';
 
-import {
-    Link
-} from 'react-router-dom';
-
-import Registration from '../components/auth/Registration'
-import { SignIn } from '../components/auth/AwsReg';
+import './LoginScreen.css'
 
 const LoginScreen = props => {
+    
+
+    const [login, setLogin] = useState(true);
+
+    const loginToggleHandler = () => {
+        setLogin(!login);
+      };
+    
+    let buttonShow;
+    let formType;
+
+    if(login){
+        buttonShow = ( 
+        <React.Fragment>
+            <Button  type="submit" variant="light" onClick = {loginToggleHandler}>
+                Register Instead
+            </Button>
+        </React.Fragment>
+        );
+        
+        formType = <SignIn SignedInHandler = {props.SignedInToggleHandler}/>
+       
+    }
+    else{
+        buttonShow = ( 
+        <React.Fragment>
+            <Button type="submit" variant="light" onClick = {loginToggleHandler}>
+                Already have an account? Log In
+            </Button>
+        </React.Fragment>
+        );
+        formType =  <Registration SignedInHandler = {props.SignedInToggleHandler}/>;
+    }
+
 
     return(
-        <div>
-            {/* <br></br>
-            <SignIn></SignIn> */}
-            <Registration></Registration>
+        <div className = "style-button" >
+           {formType}
+           <text>OR</text>
+           <br/>
+           {buttonShow}
+
         </div>
     );
 };
