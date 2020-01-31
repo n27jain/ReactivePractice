@@ -13,7 +13,7 @@ const sideDrawer = props => {
         drawerClasses = 'side-drawer open';
     }
 
-    if(!props.items){
+    if(!props.StateSigned){
         return(
             <nav className = {drawerClasses}>
             <ul>
@@ -35,7 +35,7 @@ const sideDrawer = props => {
             <nav className = {drawerClasses}>
             <ul>
                 <li>
-                    <Link to = "/SignOut" onClick = {props.DrawerHandler}> SignOut </Link>
+                    <Link to = "/Login" onClick = {props.DrawerHandler}> Log Out </Link>
                 </li>
                 <li>
                     <Link to = "/Schedule" onClick = {props.DrawerHandler}> Schedule </Link>

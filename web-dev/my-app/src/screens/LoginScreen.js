@@ -26,7 +26,7 @@ const LoginScreen = props => {
         </React.Fragment>
         );
         
-        formType = <SignIn SignedInHandler = {props.SignedInToggleHandler}/>
+        formType = <SignIn SignedInToggleHandler = {props.SignedInToggleHandler}/>
        
     }
     else{
@@ -37,7 +37,7 @@ const LoginScreen = props => {
             </Button>
         </React.Fragment>
         );
-        formType =  <Registration SignedInHandler = {props.SignedInToggleHandler}/>;
+        formType =  <Registration SignedInToggleHandler = {props.SignedInToggleHandler}/>;
     }
 
 

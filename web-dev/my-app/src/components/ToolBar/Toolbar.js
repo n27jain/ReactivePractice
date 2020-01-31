@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import logo from '../../img/medicine.png'
+import { Button } from 'react-bootstrap';
 
 
 
@@ -33,13 +34,13 @@ const toolbar = props => {
         items = (
             <React.Fragment>
             <li>
-                <Link to = "/SignOut" onClick = {props.DrawerHandler}> SignOut </Link>
+            <Link to = "/Login" > Log Out </Link>
             </li>
             <li>
-                <Link to = "/Schedule" onClick = {props.DrawerHandler}> Schedule </Link>
+                <Link to = "/Schedule" > Schedule </Link>
             </li>
             <li>
-                <Link to = "/Chat" onClick = {props.DrawerHandler}> Chat </Link>
+                <Link to = "/Chat" > Chat </Link>
             </li>
                 </React.Fragment>
             );
@@ -52,7 +53,10 @@ const toolbar = props => {
                 <DrawerToggleButton DrawerHandler = {props.DrawerHandler}/>
             </div>
             <div className = "toolbar_logo"> 
+            <Link to = "/">
                 <img src = {logo}/>
+            </Link>
+                
             </div>
             <div className = "spacer"/>
             <div className ="toolbar_navigation_items">

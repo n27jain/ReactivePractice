@@ -1,9 +1,22 @@
-import React, {Component}  from 'react';
+import React , { useState } from 'react';
+import { Button } from 'react-bootstrap';
 
+import {
+    Link
+} from 'react-router-dom';
 
-const HomeScreen = props => (
-    <div className = "login-screen">
-        <text> HomeScreen</text>
-    </div>
-);
-export default HomeScreen;
+import './LoginScreen.css'
+
+const ChatScreen = props => {
+    
+
+    
+
+    return(
+        <div className = "style-button" >
+            <text>Hey sexy</text>
+
+        </div>
+    );
+};
+export default ChatScreen;
