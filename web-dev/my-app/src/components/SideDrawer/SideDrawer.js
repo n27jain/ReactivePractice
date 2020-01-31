@@ -1,6 +1,6 @@
 import React from 'react';
 import './SideDrawer.css';
-
+import { LogOut } from '../auth/AwsReg'
 import {
     Link
 } from 'react-router-dom';
@@ -35,7 +35,7 @@ const sideDrawer = props => {
             <nav className = {drawerClasses}>
             <ul>
                 <li>
-                    <Link to = "/Login" onClick = {props.DrawerHandler}> Log Out </Link>
+                    <Link onClick ={LogOut}> Log Out </Link>
                 </li>
                 <li>
                     <Link to = "/Schedule" onClick = {props.DrawerHandler}> Schedule </Link>

@@ -25,7 +25,7 @@ Amplify.configure({
 });
 
 
-export async function SignIn(username, password, props) {
+export async function SignIn(username, password, props, setButton) {
     try {
         const user = await Auth.signIn({
             username, // Required, the username 
@@ -33,10 +33,17 @@ export async function SignIn(username, password, props) {
             }).then(
                 user => {
                     console.log("RECIEVED:", user);
+                    setButton(true);
                     props.SignedInToggleHandler();
+                    alert("Signed In!")
             }
             )
-        .catch(err => console.log(err));
+        .catch(err => {
+                console.log(err);
+                setButton(true);
+                alert("Sorry. Unexpected Error. Please Try again.");
+            }
+            );
         // The user directly signs in
         console.log("Should got");
         return user;
@@ -60,20 +67,30 @@ export async function SignUp(name, email, password){
             .then(
                 data => {
                     console.log(data);
-                    alert("Success")
+                    alert("Account Created. Signed In!")
                     return data;
                 }
                 )
             .catch(err => {
                 console.log(err);
                 //TODO: Alert User of the issue
-                alert("", err.message);
+                alert("Sorry. Unexpected error. Unable to create account.");
                 return err;
             });
 
 }
 
 export async function LogOut(props){
-    await Auth.signOut();
-    props.SignedInHandler(false);
+    await Auth.signOut().then ( data => {
+        console.log(data);
+        alert("Signed Out Successfully!")
+        //props.SignedInToggleHandler();
+    })
+    .catch(err => {
+        console.log(err);
+        alert("Encountered an error")
+    })
+
+    // 
+    
 }

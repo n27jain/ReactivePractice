@@ -8,7 +8,7 @@ import {
 
 import logo from '../../img/medicine.png'
 import { Button } from 'react-bootstrap';
-
+import { LogOut } from '../auth/AwsReg'
 
 
 const toolbar = props => {
@@ -18,31 +18,31 @@ const toolbar = props => {
     if(!props.StateSigned){
         items = (
             <React.Fragment>
-            <li>
-            <Link to = "/Login" > Login </Link>
-            </li>
-            <li>
-            <Link to = "/Locations" > Locations </Link>
-            </li>
-            <li>
-            <Link to = "/QA" > {'Q&A'} </Link>
-            </li>
-                </React.Fragment>
+                <li>
+                <Link to = "/Login" > Login </Link>
+                </li>
+                <li>
+                <Link to = "/Locations" > Locations </Link>
+                </li>
+                <li>
+                <Link to = "/QA" > {'Q&A'} </Link>
+                </li>
+            </React.Fragment>
             );
     }
     else{
         items = (
             <React.Fragment>
-            <li>
-            <Link to = "/Login" > Log Out </Link>
-            </li>
-            <li>
-                <Link to = "/Schedule" > Schedule </Link>
-            </li>
-            <li>
-                <Link to = "/Chat" > Chat </Link>
-            </li>
-                </React.Fragment>
+                <li>
+                    <Link onClick ={LogOut} > Log Out </Link>
+                </li>
+                <li>
+                    <Link to = "/Schedule" > Schedule </Link>
+                </li>
+                <li>
+                    <Link to = "/Chat" > Chat </Link>
+                </li>
+            </React.Fragment>
             );
     }
 

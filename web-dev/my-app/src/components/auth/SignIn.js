@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Spinner } from 'react-bootstrap';
 import { SignIn } from './AwsReg';
 import './Registration.css';
 
@@ -8,21 +8,37 @@ export default function Register (props)  {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [button, setButton] = useState(true);
     //const history = useHistory();
 
-    function handleSubmit(event){
 
+    function handleSubmit(event){
+        setButton(false);
         console.log("Submitted");
         event.preventDefault();
         console.log(email,password);
-        SignIn(email,password,props);
+        SignIn(email,password,props,setButton);
 
-           // props.SignedInToggleHandler();
-            //history.push('/Chat');
-        
-       
     }
-   
+    let buttonView;
+    if(button){
+        buttonView =
+        <React.Fragment>
+            <Button type="submit" >
+                <text>
+                    Sign In
+                </text>
+            </Button>
+        </React.Fragment>
+    }
+    else{
+        buttonView =
+        
+        <Spinner animation = "border" variant ="primary"/>
+      
+    }
+
+
      
     return (
         
@@ -46,10 +62,7 @@ export default function Register (props)  {
                     onChange={e => setPassword(e.target.value)}
                     placeholder="Password" />
             </Form.Group>
-        
-            <Button type="submit" >
-                Sign In
-            </Button>
+           {buttonView}
         </Form >
             
         </div>

@@ -1,26 +1,20 @@
-import React, {Component}  from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import './App.css';
-
-import Toolbar from './components/ToolBar/Toolbar';
-import SideDrawer from './components/SideDrawer/SideDrawer';
 import BackDrop from './components/backdrop/BackDrop';
+import SideDrawer from './components/SideDrawer/SideDrawer';
+import Toolbar from './components/ToolBar/Toolbar';
+import ChatScreen from './screens/ChatScreen';
+import HomeScreen from './screens/HomeScreen';
+import LocationsScreen from './screens/LocationsScreen';
+import LoginScreen from './screens/LoginScreen';
+import QAScreen from './screens/QAScreen';
+import ScheduleScreen from './screens/ScheduleScreen';
+import SignoutScreen from './screens/SignoutScreen';
 
-import HomeScreen from './screens/HomeScreen'
-import LocationsScreen from './screens/LocationsScreen'
-import QAScreen from './screens/QAScreen'
-import LoginScreen from './screens/LoginScreen'
+import {FleetContext, Provider} from './FleetContext'
 
-import ScheduleScreen from './screens/ScheduleScreen'
-import ChatScreen from './screens/ChatScreen'
-import SignoutScreen from './screens/SignoutScreen'
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-} from 'react-router-dom';
-
-import { useHistory } from "react-router-dom";
 
 class App extends Component {
 
@@ -48,20 +42,30 @@ class App extends Component {
 render(){
  
   let backdrop;
-  let redirectToChat = null;
+  let redirectVar = <Redirect exact from="/" to="/Login" />;
   if(this.state.sideDrawerOpen){
     backdrop = <BackDrop onClick = {this.drawerToggleHandler}/>
   }
-  // fucntion redirect{
-  //   redirectToChat = 
-  // }
+  function RedirectStatus(toChat){
+    if(toChat){
+      redirectVar = <Redirect to = '/Chat'/>;
+    }
+    else{
+      redirectVar = <Redirect exact from="/" to="/Login" />;
+    }
+  }
+
 
     return (
 
+      // <FleetContext.Provider value ={{...this.drawerToggleHandler}}>
+        
+      // </FleetContext.Provider>
+
       <Router>
       <div style = {{ height: '100%'}}>
-        <Toolbar DrawerHandler = {this.drawerToggleHandler} StateSigned = {this.state.signedIn} />
-        <SideDrawer show = {this.state.sideDrawerOpen} DrawerHandler = {this.drawerToggleHandler} StateSigned = {this.state.signedIn} />
+        <Toolbar DrawerHandler = {this.drawerToggleHandler} StateSigned = {this.state.signedIn} SignedInToggleHandler = {this.signedInToggleHandler} />
+        <SideDrawer show = {this.state.sideDrawerOpen} DrawerHandler = {this.drawerToggleHandler} StateSigned = {this.state.signedIn} SignedInToggleHandler = {this.signedInToggleHandler} />
         {backdrop}
       
           <div className = "page-container">
@@ -74,8 +78,7 @@ render(){
               <Route path = '/SignOut' component ={SignoutScreen} /> 
               <Route path = '/Schedule' component ={ScheduleScreen} /> 
               <Route path = '/Chat' component ={ChatScreen} /> 
-              <Redirect exact from="/" to="/Login" />
-              {redirectToChat}
+              {redirectVar}
             </main>
           </div>
       </div>
