@@ -12,9 +12,6 @@ import QAScreen from './screens/QAScreen';
 import ScheduleScreen from './screens/ScheduleScreen';
 import SignoutScreen from './screens/SignoutScreen';
 
-import {FleetContext, Provider} from './FleetContext'
-
-
 
 class App extends Component {
 
