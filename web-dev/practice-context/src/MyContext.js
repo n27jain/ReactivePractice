@@ -1,3 +1,3 @@
 import React, { Component } from 'react';
 
-export const myContext = React.createContext();
+export const  MyContext = React.createContext();

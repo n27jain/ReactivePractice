@@ -1,50 +1,19 @@
 import React, { Component } from 'react';
-import './App.css';
-import Child from './Child'
-
-import {myContext} from './MyContext'
-
+import MyProvider from './components/MyProvider';
+import Family from './components/Family';
 
 class App extends Component {
-
-  
-  state = {
-    sideDrawerOpen : false,
-    signedIn : false,
-  };
-
- 
-  drawerToggleHandler = () => {
-    this.setState( (prev) => {
-      return {sideDrawerOpen:!prev.sideDrawerOpen};
-    } );
-  };
-
-  signedInToggleHandler = () => {
-    this.setState( (prev) => {
-      return {signedIn: !prev.signedIn};
-    });
-  };
-
-  
-
-render(){
- 
+  render() {
     return (
-      <div>
-        <text>Hey</text>
-        <myContext.Provider
-          value= {{
-            state: this.state,
-            drawerToggleHandler: this.drawerToggleHandler,
-          }}
-        >
-            {this.props.children}
-        </myContext.Provider>
-        <Child></Child>
-      </div>
-      
+      <MyProvider>
+        <div>
+          <p>I am the app</p>
+          <Family />
+        </div>
+      </MyProvider>
     );
   }
 }
+
+
 export default App;
