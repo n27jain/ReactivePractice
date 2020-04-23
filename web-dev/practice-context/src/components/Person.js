@@ -5,13 +5,10 @@ import { MyContext } from '../MyContext';
 
 
 class Person extends Component {
-    static contextType = MyContext.Consumer;
+ 
     
-    
-  
-
   render() {
-      this.contextType.growAYearOlder();
+     
     return (
       <div className="person">
         <MyContext.Consumer>
